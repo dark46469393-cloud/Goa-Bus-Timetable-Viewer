@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goa Bus Timetable Viewer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="container header-content">
+      <div>
+        <h1>Goa Bus Timetable</h1>
+        <p class="subtitle">KTCL Shuttle &amp; Local Express Schedules</p>
+      </div>
+      <div class="clock-badge" id="live-clock" aria-label="Current Time">--:--</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Controls Section -->
+    <section class="controls-card" aria-label="Schedule Filters">
+      <div class="control-group">
+        <label for="route-select">Select Route</label>
+        <select id="route-select">
+          <option value="panjim-margao">Panjim → Margao (via Bambolim / Verna)</option>
+          <option value="panjim-mapusa">Panjim → Mapusa (via Porvorim)</option>
+          <option value="margao-vasco">Margao → Vasco (via Nuvem / Dabolim)</option>
+          <option value="panjim-vasco">Panjim → Vasco (via Cortalim / Zuari)</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label>Schedule Day</label>
+        <div class="toggle-group" role="group" aria-label="Day Type">
+          <button type="button" class="toggle-btn active" data-day="weekday" id="btn-weekday">
+            Mon – Sat (Weekday)
+          </button>
+          <button type="button" class="toggle-btn" data-day="sunday" id="btn-sunday">
+            Sunday / Holiday
+          </button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="stop-search">Filter by Stop Name</label>
+        <div class="search-wrapper">
+          <input
+            type="text"
+            id="stop-search"
+            placeholder="e.g. Bambolim, Porvorim, Dabolim..."
+            autocomplete="off"
+          />
+          <button type="button" id="clear-search" class="clear-btn" hidden aria-label="Clear search">&times;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Next Bus Panel -->
+    <section class="next-bus-card" id="next-bus-panel" aria-live="polite">
+      <!-- Populated dynamically via app.js -->
+    </section>
+
+    <!-- Full Timetable Section -->
+    <section class="timetable-section">
+      <div class="section-header">
+        <h2 id="timetable-title">Full Schedule</h2>
+        <span class="bus-count" id="bus-count">0 buses</span>
+      </div>
+
+      <div class="table-container">
+        <table class="timetable-table">
+          <thead>
+            <tr>
+              <th>Departs</th>
+              <th>Service / Type</th>
+              <th>Major Stops &amp; Estimated Times</th>
+              <th>Arrives</th>
+            </tr>
+          </thead>
+          <tbody id="timetable-body">
+            <!-- Populated dynamically via app.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <p>Timings are indicative for KTCL &amp; Private Express buses across Goa.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
